@@ -1,0 +1,29 @@
+info:
+  name: Toggle Zone Status (Admin)
+  type: http
+  seq: 18
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/zones/{{zoneId}}/status"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "active"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Toggles zone status between active and inactive.

@@ -1,0 +1,29 @@
+info:
+  name: Toggle City Status (Admin)
+  type: http
+  seq: 11
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/cities/{{cityId}}/status"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "active"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Toggles city active/inactive.

@@ -1,0 +1,29 @@
+info:
+  name: Toggle Service in Zone (Admin)
+  type: http
+  seq: 22
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/zones/{{zoneId}}/services/{{serviceId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "enabled": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Enables or disables a specific medical/care service in the selected zone.

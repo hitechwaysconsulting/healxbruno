@@ -1,0 +1,62 @@
+info:
+  name: Admin Create Promo Code
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/promo-codes"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "code": "DIWALI2026",
+        "title": "Festive Wellness Discount",
+        "description": "Flat ₹250 discount on orders above ₹1000 across all home health services.",
+        "discount_type": "flat",
+        "value": 250,
+        "max_discount_cap": 250,
+        "valid_from": "2026-09-01T00:00:00.000Z",
+        "valid_to": "2026-11-30T23:59:59.000Z",
+        "per_user_limit": 2,
+        "total_limit": 500,
+        "min_order_value": 1000,
+        "applicable_categories": [
+          "0",
+          "1"
+        ],
+        "first_order_only": false,
+        "visible_to_customers": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.promo_code && json.promo_code.id) {\r
+
+        \    bru.setCollectionVar(\"promoCodeId\", json.promo_code.id);\r
+
+        \    bru.setCollectionVar(\"promoCode\", json.promo_code.code);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Creates promo code with discount configuration, usage limits, date ranges, and category restrictions.

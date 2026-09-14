@@ -1,0 +1,49 @@
+info:
+  name: Add Family Member
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/family-members"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Shyam Sundar",
+        "relationship": "Father",
+        "age": 68,
+        "gender": "male",
+        "blood_group": "B+",
+        "allergies": "Penicillin, Dust",
+        "contact_number": "+919876543220",
+        "height": "172 cm",
+        "weight": "74 kg",
+        "profile_image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.id) bru.setCollectionVar(\"familyMemberId\", json.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Registers a dependent family member. Supports medical history, allergies, and blood group validation.

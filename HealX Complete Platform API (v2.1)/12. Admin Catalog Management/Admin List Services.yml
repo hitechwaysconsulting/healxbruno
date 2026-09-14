@@ -1,0 +1,21 @@
+info:
+  name: Admin List Services
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/services"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Lists all services including hidden, draft, or inactive items with administration metadata.

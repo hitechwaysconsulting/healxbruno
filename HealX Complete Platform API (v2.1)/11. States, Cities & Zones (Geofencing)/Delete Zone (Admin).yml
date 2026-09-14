@@ -1,0 +1,21 @@
+info:
+  name: Delete Zone (Admin)
+  type: http
+  seq: 19
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/zones/{{zoneId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Deletes a zone (ensures no orphaned orders exist).

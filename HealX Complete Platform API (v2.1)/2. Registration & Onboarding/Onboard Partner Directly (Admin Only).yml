@@ -1,0 +1,50 @@
+info:
+  name: Onboard Partner Directly (Admin Only)
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/register-partner"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Sister Anita Joseph",
+        "phone": "+919876500001",
+        "email": "anita.nurse@healx.com",
+        "category": "nurse",
+        "work_type": "full_time",
+        "gender": "female",
+        "dob": "1988-11-05",
+        "emergency_contact": "+919876500099",
+        "profile_image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.accessToken) bru.setCollectionVar(\"partnerToken\", json.accessToken);\r
+
+        \  if (json.partner && json.partner.id) bru.setCollectionVar(\"partnerId\", json.partner.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Admin directly onboards a new healthcare partner. Generates PRT code and credentials.

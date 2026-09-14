@@ -1,0 +1,25 @@
+info:
+  name: List Partner Bookings
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partner/bookings?status=assigned"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  params:
+    - name: status
+      value: assigned
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Assigned tasks for the logged-in partner.

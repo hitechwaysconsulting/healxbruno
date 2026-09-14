@@ -1,0 +1,31 @@
+info:
+  name: Admin Record Cash Remittance
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}/cash-remittance"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "amount": 2500,
+        "reference": "BANK_REF_NEFT_981273",
+        "notes": "Cash collected from weekend bookings deposited at head office."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Records cash remittance from partner, reducing floating cash ledger balance and releasing dispatch restrictions. Aliases: POST /admin/cash-remittance."

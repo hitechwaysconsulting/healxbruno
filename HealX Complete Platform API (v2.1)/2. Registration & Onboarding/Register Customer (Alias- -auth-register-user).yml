@@ -1,0 +1,31 @@
+info:
+  name: "Register Customer (Alias: /auth/register-user)"
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/register-user"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Priya Patel",
+        "phone": "+919811223344",
+        "email": "priya.patel@example.com",
+        "gender": "female",
+        "dob": "1995-03-22"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Canonical alias for customer registration.

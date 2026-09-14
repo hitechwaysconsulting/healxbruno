@@ -1,0 +1,29 @@
+info:
+  name: Deactivate Account
+  type: http
+  seq: 6
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/user/account"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "reason": "Relocated out of service zone"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Soft deactivates customer or partner account and terminates all active login sessions.

@@ -1,0 +1,33 @@
+info:
+  name: Update Profile
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/user/profile"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Rahul S. Sharma",
+        "email": "rahul.updated@example.com",
+        "gender": "male",
+        "dob": "1992-08-14",
+        "emergency_contact": "+919876543299"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates personal demographics. Validates email uniqueness and phone formats.

@@ -1,0 +1,72 @@
+info:
+  name: Create Zone with Polygon (Admin)
+  type: http
+  seq: 15
+
+http:
+  method: POST
+  url: "{{baseUrl}}/zones"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Koramangala Zone",
+        "city_id": 1,
+        "state_id": 1,
+        "boundary": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                77.61,
+                12.93
+              ],
+              [
+                77.635,
+                12.93
+              ],
+              [
+                77.635,
+                12.945
+              ],
+              [
+                77.61,
+                12.945
+              ],
+              [
+                77.61,
+                12.93
+              ]
+            ]
+          ]
+        },
+        "capacity_cap": 50,
+        "open_for_partners": true,
+        "open_for_bookings": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.zone && json.zone.id) bru.setCollectionVar(\"zoneId\", json.zone.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Admin defines a geographic polygon boundary for home visit coverage.

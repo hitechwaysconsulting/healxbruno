@@ -1,0 +1,28 @@
+info:
+  name: Request OTP (Email)
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/request-otp"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "{{testCustomerEmail}}",
+        "userType": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Sends a 6-digit OTP code to the provided email address via Gmail SMTP. Rate limited: max 3 requests per 10 minutes, 60s cooldown. userType: 1=customer, 2=partner, 3=admin."

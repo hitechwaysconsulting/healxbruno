@@ -1,0 +1,30 @@
+info:
+  name: Preview Booking Pricing
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/preview"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_id": "{{serviceId}}",
+        "promo_code": "WELCOME50"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Calculates base price, discount, taxes, and final payable amount without creating an order.

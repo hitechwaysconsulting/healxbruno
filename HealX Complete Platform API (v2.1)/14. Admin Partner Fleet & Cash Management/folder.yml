@@ -1,0 +1,7 @@
+info:
+  name: 14. Admin Partner Fleet & Cash Management
+  type: folder
+  seq: 14
+
+request:
+  auth: inherit

@@ -1,0 +1,29 @@
+info:
+  name: Upload Profile Image (JSON URL)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/profile/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "image_url": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=600"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates profile image using a public HTTP/HTTPS URL (validated for remote file size under 500MB).

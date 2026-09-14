@@ -1,0 +1,21 @@
+info:
+  name: Unified Bookings Dispatcher
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/bookings"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Smart endpoint: dynamically detects whether caller is Customer, Partner, or Admin and delivers corresponding view."

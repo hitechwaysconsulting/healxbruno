@@ -1,0 +1,21 @@
+info:
+  name: Partner Accept Booking
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/accept"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Partner accepts an assigned booking. Status transitions from 'assigned' to 'accepted'.

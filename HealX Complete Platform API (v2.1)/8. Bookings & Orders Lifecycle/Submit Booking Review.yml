@@ -1,0 +1,30 @@
+info:
+  name: Submit Booking Review
+  type: http
+  seq: 14
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/review"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "rating": 5,
+        "comment": "Sister Anita was extremely gentle and professional with my father. Highly recommend!"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Customer leaves a 1-5 star review and comment for the assigned partner on a completed booking.

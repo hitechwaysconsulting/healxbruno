@@ -1,0 +1,7 @@
+info:
+  name: 16. Admin Partner Change Requests
+  type: folder
+  seq: 16
+
+request:
+  auth: inherit

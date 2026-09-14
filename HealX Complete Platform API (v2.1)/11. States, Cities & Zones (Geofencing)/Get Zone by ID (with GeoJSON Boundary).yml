@@ -1,0 +1,18 @@
+info:
+  name: Get Zone by ID (with GeoJSON Boundary)
+  type: http
+  seq: 14
+
+http:
+  method: GET
+  url: "{{baseUrl}}/zones/{{zoneId}}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Fetches zone details and full PostGIS GeoJSON polygon boundary.

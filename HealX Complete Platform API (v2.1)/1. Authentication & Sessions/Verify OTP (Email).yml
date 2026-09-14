@@ -1,0 +1,44 @@
+info:
+  name: Verify OTP (Email)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/verify-otp"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "email": "{{testCustomerEmail}}",
+        "otp": "123456",
+        "userType": 1
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.accessToken) bru.setCollectionVar(\"customerToken\", json.accessToken);\r
+
+        \  if (json.refreshToken) bru.setCollectionVar(\"refreshToken\", json.refreshToken);\r
+
+        \  if (json.customer && json.customer.id) bru.setCollectionVar(\"customerId\", json.customer.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Verifies email OTP. If valid and account exists, returns JWT access and refresh tokens. If new user, returns isNew: true."

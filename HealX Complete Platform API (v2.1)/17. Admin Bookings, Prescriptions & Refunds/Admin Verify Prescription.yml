@@ -1,0 +1,30 @@
+info:
+  name: Admin Verify Prescription
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/bookings/{{bookingId}}/prescription-verification"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "action": "approve",
+        "notes": "Valid prescription from Dr. Mehta verified with registered medical council number."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Approves or rejects customer's uploaded prescription for medicated care.

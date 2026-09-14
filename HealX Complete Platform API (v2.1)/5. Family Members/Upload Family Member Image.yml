@@ -1,0 +1,29 @@
+info:
+  name: Upload Family Member Image
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/family-members/{{familyMemberId}}/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "image_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Uploads an avatar photo for the specific family member.

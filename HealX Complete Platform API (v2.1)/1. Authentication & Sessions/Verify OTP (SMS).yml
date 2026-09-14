@@ -1,0 +1,53 @@
+info:
+  name: Verify OTP (SMS)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/verify-otp-sms"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "{{testCustomerPhone}}",
+        "otp": "123456"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.accessToken) {\r
+
+        \    if (json.actor && json.actor.type === \"partner\") {\r
+
+        \      bru.setCollectionVar(\"partnerToken\", json.accessToken);\r
+
+        \    } else {\r
+
+        \      bru.setCollectionVar(\"customerToken\", json.accessToken);\r
+
+        \    }\r
+
+        \  }\r
+
+        \  if (json.refreshToken) bru.setCollectionVar(\"refreshToken\", json.refreshToken);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Verifies SMS OTP and logs in the matched actor (Customer or Partner). Issues JWT access token and refresh token.

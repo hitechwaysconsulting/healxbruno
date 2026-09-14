@@ -1,0 +1,29 @@
+info:
+  name: Admin Assign Slot Visit
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/bookings/{{bookingId}}/visits/{{visitId}}/assign"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "partner_id": "{{partnerId}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Assigns a specific partner to a scheduled slot visit on multi-day care packages.

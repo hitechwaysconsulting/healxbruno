@@ -1,0 +1,18 @@
+info:
+  name: Upload Tester Web UI
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/upload-tester"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Built-in interactive HTML upload and token verification page (disabled in strict production).

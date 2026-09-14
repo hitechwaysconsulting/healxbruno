@@ -1,0 +1,21 @@
+info:
+  name: Admin Get Partner Cash Ledger
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}/cash-ledger"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Detailed financial ledger showing order COD collections and administrative remittances. Aliases: GET /admin/cash-ledger."

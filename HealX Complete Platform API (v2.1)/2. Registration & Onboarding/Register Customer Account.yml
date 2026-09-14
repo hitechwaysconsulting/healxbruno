@@ -1,0 +1,49 @@
+info:
+  name: Register Customer Account
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/register-customer"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Rahul Sharma",
+        "phone": "+919876543210",
+        "email": "rahul.sharma@example.com",
+        "gender": "male",
+        "dob": "1992-08-14",
+        "emergency_contact": "+919876543299",
+        "profile_image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400",
+        "referral_code": "HEALTHY10"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.accessToken) bru.setCollectionVar(\"customerToken\", json.accessToken);\r
+
+        \  if (json.refreshToken) bru.setCollectionVar(\"refreshToken\", json.refreshToken);\r
+
+        \  if (json.customer && json.customer.id) bru.setCollectionVar(\"customerId\", json.customer.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Creates a new customer profile, auto-generates patient_id (e.g. PAT123456) and unique referral_code. Returns session tokens.

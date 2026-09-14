@@ -1,0 +1,21 @@
+info:
+  name: Get Account Details
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user/account"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Retrieves account metadata: status (active/blocked/deactivated), member_since timestamp, and referral code."

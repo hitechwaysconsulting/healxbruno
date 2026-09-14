@@ -1,0 +1,7 @@
+info:
+  name: 19. Public & System Health
+  type: folder
+  seq: 19
+
+request:
+  auth: inherit

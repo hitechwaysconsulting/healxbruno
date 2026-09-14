@@ -1,0 +1,30 @@
+info:
+  name: Create City (Admin)
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/cities"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Hyderabad",
+        "state_id": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Admin registers a city under a state.

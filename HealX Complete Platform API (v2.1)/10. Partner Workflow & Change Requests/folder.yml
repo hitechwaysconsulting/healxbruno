@@ -1,0 +1,7 @@
+info:
+  name: 10. Partner Workflow & Change Requests
+  type: folder
+  seq: 10
+
+request:
+  auth: inherit

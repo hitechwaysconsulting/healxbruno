@@ -1,0 +1,29 @@
+info:
+  name: Update Online Status
+  type: http
+  seq: 1
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/partner/status"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "online_status": "online"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Toggles partner availability state ('online', 'offline', or 'busy'). Aliases: PATCH /partners/status."

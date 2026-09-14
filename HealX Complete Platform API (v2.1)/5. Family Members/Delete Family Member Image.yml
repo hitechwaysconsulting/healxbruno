@@ -1,0 +1,21 @@
+info:
+  name: Delete Family Member Image
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/user/family-members/{{familyMemberId}}/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Deletes the photo URL for the family member.

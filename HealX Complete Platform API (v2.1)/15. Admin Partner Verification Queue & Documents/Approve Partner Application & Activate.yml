@@ -1,0 +1,36 @@
+info:
+  name: Approve Partner Application & Activate
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}/approve"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.partner && json.partner.id) {\r
+
+        \    bru.setCollectionVar(\"partnerId\", json.partner.id);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Atomically approves application: creates active row in 'partners' with auto-generated PRT code, copies decrypted bank details into 'partner_bank_details', updates application to 'approved', records audit log, and notifies partner."

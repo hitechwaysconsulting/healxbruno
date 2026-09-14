@@ -1,0 +1,21 @@
+info:
+  name: Get Active Sessions
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/auth/sessions"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Lists all active refresh token sessions for the authenticated actor (IP address, user agent, expiration).

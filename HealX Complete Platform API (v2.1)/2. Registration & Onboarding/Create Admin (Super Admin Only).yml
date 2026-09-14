@@ -1,0 +1,34 @@
+info:
+  name: Create Admin (Super Admin Only)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/create-admin"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Operations Manager",
+        "email": "ops@healx.com",
+        "phone": "+919900000002",
+        "password": "SecureOpsPassword!123",
+        "role_id": 1,
+        "profile_image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Super Admin creates a new admin user with assigned role and bcrypt password. Aliases: POST /admin/admins, POST /auth/register-admin."

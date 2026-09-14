@@ -1,0 +1,32 @@
+info:
+  name: Update Zone Boundary (Admin)
+  type: http
+  seq: 16
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/zones/{{zoneId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Koramangala & HSR Extension",
+        "capacity_cap": 75,
+        "open_for_partners": true,
+        "open_for_bookings": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Admin updates zone parameters or boundaries.

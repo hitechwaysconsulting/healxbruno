@@ -1,0 +1,56 @@
+info:
+  name: Create Direct Booking
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_id": "{{serviceId}}",
+        "address_id": "{{addressId}}",
+        "family_member_id": "{{familyMemberId}}",
+        "scheduled_at": "2026-09-16T14:30:00.000Z",
+        "promo_code": "WELCOME50",
+        "customer_notes": "First floor, bell on right.",
+        "payment_method": "cash"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.id || (json.order && json.order.id)) {\r
+
+        \    var id = json.id || json.order.id;\r
+
+        \    bru.setCollectionVar(\"bookingId\", id);\r
+
+        \  }\r
+
+        \  if (json.start_otp) bru.setCollectionVar(\"startOtp\", json.start_otp);\r
+
+        \  if (json.completion_otp) bru.setCollectionVar(\"completionOtp\", json.completion_otp);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Creates an order in 'needs_assignment' status with auto-generated start_otp and completion_otp.

@@ -1,0 +1,21 @@
+info:
+  name: Partner Start Transit
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/start-transit"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Partner marks themselves 'in_transit' / on the way to the patient's address.

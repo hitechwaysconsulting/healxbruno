@@ -1,0 +1,45 @@
+info:
+  name: Add Item to Cart
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/cart/items"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "service_id": "{{serviceId}}",
+        "quantity": 1
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200 || res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.cart && json.cart.items && json.cart.items.length > 0) {\r
+
+        \    bru.setCollectionVar(\"cartItemId\", json.cart.items[0].id);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Adds a service to cart. If already present, increments quantity.

@@ -1,0 +1,30 @@
+info:
+  name: Payment Gateway Webhook
+  type: http
+  seq: 13
+
+http:
+  method: POST
+  url: "{{baseUrl}}/payments/webhook"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "order_id": "{{bookingId}}",
+        "payment_id": "PAY_TEST_998811",
+        "status": "success",
+        "amount": 1450
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Server-to-server asynchronous callback from payment gateway confirming transaction settlement.

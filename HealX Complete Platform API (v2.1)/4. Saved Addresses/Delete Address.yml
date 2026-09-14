@@ -1,0 +1,21 @@
+info:
+  name: Delete Address
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/user/addresses/{{addressId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Removes an address and cleans up the join table record.

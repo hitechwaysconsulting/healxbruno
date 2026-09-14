@@ -1,0 +1,27 @@
+info:
+  name: Request OTP (SMS)
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/request-otp-sms"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "phone": "{{testCustomerPhone}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Sends a 6-digit OTP code to mobile phone via Twilio SMS. Requires phone number registered with an account.

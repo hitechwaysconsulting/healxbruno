@@ -1,0 +1,30 @@
+info:
+  name: Upload Prescription (JSON URL)
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/prescriptions"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "file_url": "https://example.com/medical_prescription_doc.pdf",
+        "order_id": "{{bookingId}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Uploads medical prescription URL or multipart file for doctor verification on medicated services.

@@ -1,0 +1,36 @@
+info:
+  name: Update Address
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/user/addresses/{{addressId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "address_line1": "Flat 402, Tower B, Green View Apartments",
+        "address_line2": "14th Main, HSR Layout",
+        "landmark": "Opposite HSR Club",
+        "city_id": 1,
+        "state_id": 1,
+        "pincode": "560102",
+        "label": "Home",
+        "is_default": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates an existing address belonging to the current user.

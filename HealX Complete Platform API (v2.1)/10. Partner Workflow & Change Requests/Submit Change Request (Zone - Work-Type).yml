@@ -1,0 +1,45 @@
+info:
+  name: Submit Change Request (Zone / Work-Type)
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/change-requests"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "request_type": "zone",
+        "requested_value": "2"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.request && json.request.id) {\r
+
+        \    bru.setCollectionVar(\"changeRequestId\", json.request.id);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Partner requests to change assigned operational zone or work_type. Automatically applies a 30-day lock period before early approval is allowed. Aliases: POST /partners/change-requests."

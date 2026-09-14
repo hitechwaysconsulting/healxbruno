@@ -1,0 +1,31 @@
+info:
+  name: Validate Promo Code
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/promo-codes/validate"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "code": "WELCOME50",
+        "amount": 1500,
+        "category": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Validates a coupon code against order value and category, calculating discount preview.

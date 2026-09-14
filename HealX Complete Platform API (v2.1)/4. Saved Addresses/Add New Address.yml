@@ -1,0 +1,47 @@
+info:
+  name: Add New Address
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/addresses"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "address_line1": "Flat 402, Green View Apartments",
+        "address_line2": "14th Main, 4th Sector, HSR Layout",
+        "landmark": "Near BDA Complex",
+        "city_id": 1,
+        "state_id": 1,
+        "pincode": "560102",
+        "label": "Home",
+        "is_default": true
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.addressId) bru.setCollectionVar(\"addressId\", json.addressId);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Adds a reusable address record and links it to the customer with Home/Work/Other label.

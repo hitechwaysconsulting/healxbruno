@@ -1,0 +1,29 @@
+info:
+  name: Cancel Booking
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/cancel"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "reason": "Patient had an emergency doctor visit"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Cancels booking if not completed. Re-enables promo code usage if applicable.

@@ -1,0 +1,29 @@
+info:
+  name: Update Cart Item Quantity
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/cart/items/{{cartItemId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "quantity": 2
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates quantity for a specific line item and recalculates totals.

@@ -1,0 +1,31 @@
+info:
+  name: Update Zone Capacity & Flags (Admin)
+  type: http
+  seq: 17
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/zones/{{zoneId}}/capacity"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "capacity_cap": 100,
+        "open_for_partners": true,
+        "open_for_bookings": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates capacity constraints and operational booking switches.

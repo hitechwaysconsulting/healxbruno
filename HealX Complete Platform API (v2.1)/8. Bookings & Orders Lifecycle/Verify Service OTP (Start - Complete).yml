@@ -1,0 +1,29 @@
+info:
+  name: Verify Service OTP (Start / Complete)
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/verify-otp"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "otp": "123456"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Validates OTP. If start_otp matches, moves status to 'in_progress'. If completion_otp matches, transitions booking to 'completed'.

@@ -1,0 +1,51 @@
+info:
+  name: List Partner Applications
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/partner-applications?status=docs_pending&search=&page=1&limit=20"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: status
+      value: docs_pending
+      type: query
+      description: docs_pending, ready_to_approve, approved, rejected, all
+    - name: search
+      value: ""
+      type: query
+      description: Search by name, phone, or email
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "20"
+      type: query
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.applications && json.applications.length > 0) {\r
+
+        \    bru.setCollectionVar(\"applicationId\", json.applications[0].id);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Lists onboarding applications in the administrative verification queue.

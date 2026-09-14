@@ -1,0 +1,30 @@
+info:
+  name: Pay for Booking
+  type: http
+  seq: 12
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings/{{bookingId}}/pay"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "method": "upi",
+        "amount": 1450
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Processes payment for a booking, creates payments record, and updates floating cash if cash payment.

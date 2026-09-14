@@ -1,0 +1,48 @@
+info:
+  name: Checkout Cart to Bookings
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/cart/checkout"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "address_id": "{{addressId}}",
+        "family_member_id": "{{familyMemberId}}",
+        "payment_method": "upi",
+        "customer_notes": "Patient is bedridden, please carry blood pressure monitor.",
+        "scheduled_at": "2026-09-15T10:00:00.000Z"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.orders && json.orders.length > 0) {\r
+
+        \    bru.setCollectionVar(\"bookingId\", json.orders[0].id);\r
+
+        \  }\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Converts cart items into confirmed bookings/orders, validates prescription requirements, and closes active cart.

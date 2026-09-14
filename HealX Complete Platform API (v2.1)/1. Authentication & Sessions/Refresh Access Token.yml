@@ -1,0 +1,40 @@
+info:
+  name: Refresh Access Token
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/auth/refresh-token"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "refreshToken": "{{refreshToken}}"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 200) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.accessToken) bru.setCollectionVar(\"customerToken\", json.accessToken);\r
+
+        \  if (json.refreshToken) bru.setCollectionVar(\"refreshToken\", json.refreshToken);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Exchanges a valid refresh token for a fresh 15-minute access token. Implements automatic token rotation and replay-attack detection (revoking family if compromised).

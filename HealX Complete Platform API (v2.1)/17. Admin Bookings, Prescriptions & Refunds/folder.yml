@@ -1,0 +1,7 @@
+info:
+  name: 17. Admin Bookings, Prescriptions & Refunds
+  type: folder
+  seq: 17
+
+request:
+  auth: inherit
