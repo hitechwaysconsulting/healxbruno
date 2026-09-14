@@ -1,0 +1,30 @@
+info:
+  name: Admin Update Partner Status & Cash Limit
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "active",
+        "floating_cash_limit": 7500
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Modifies partner status (active, suspended, deactivated) and customizes maximum allowed floating cash limit.

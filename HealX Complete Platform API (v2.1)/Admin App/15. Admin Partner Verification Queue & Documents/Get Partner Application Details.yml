@@ -1,0 +1,21 @@
+info:
+  name: Get Partner Application Details
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Returns application profile, uploaded documents status, and masked bank account number (e.g. XXXXXXXXX0987).

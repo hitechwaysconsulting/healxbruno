@@ -1,0 +1,31 @@
+info:
+  name: Admin Process Refund (Approve / Reject)
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/refunds/{{refundId}}/process"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "action": "approve",
+        "transaction_reference": "REFUND_PG_TXN_776192",
+        "notes": "Approved full refund due to partner cancellation within grace period."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Approves or rejects refund, updates order payment status to 'refunded', and logs audit event. Also supported via PATCH.

@@ -1,0 +1,31 @@
+info:
+  name: Admin Update Category
+  type: http
+  seq: 8
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/categories/0"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Clinical & Medicated Services",
+        "description": "Services requiring registered nurses, clinical consumables, or doctor prescriptions.",
+        "sort_order": 1
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Modifies category title, description, and display ordering.

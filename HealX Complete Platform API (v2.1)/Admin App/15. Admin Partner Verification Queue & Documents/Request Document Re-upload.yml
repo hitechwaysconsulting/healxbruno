@@ -1,0 +1,30 @@
+info:
+  name: Request Document Re-upload
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}/request-reupload"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "doc_type": "certification",
+        "message": "The uploaded degree certificate is blurry and illegible. Please re-upload a clear scanned copy."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Sets document status to pending with reviewer message, resets application to 'docs_pending', and sends SMS/email notification to applicant.

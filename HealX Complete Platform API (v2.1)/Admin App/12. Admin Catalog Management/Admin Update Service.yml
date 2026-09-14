@@ -1,0 +1,32 @@
+info:
+  name: Admin Update Service
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/services/{{serviceId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Post-Operative Wound Dressing & Sterile Care",
+        "base_price": 700,
+        "duration_minutes": 50,
+        "visible_in_app": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates service details, pricing, and timing.

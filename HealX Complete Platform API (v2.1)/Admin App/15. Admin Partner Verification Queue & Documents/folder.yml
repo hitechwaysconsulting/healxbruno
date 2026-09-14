@@ -1,0 +1,7 @@
+info:
+  name: 15. Admin Partner Verification Queue & Documents
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit

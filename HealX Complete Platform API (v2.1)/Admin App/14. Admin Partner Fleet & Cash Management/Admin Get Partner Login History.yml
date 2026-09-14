@@ -1,0 +1,21 @@
+info:
+  name: Admin Get Partner Login History
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}/login-history"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Retrieves recent login events for the specified partner with IP address and device details.

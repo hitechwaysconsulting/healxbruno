@@ -1,0 +1,47 @@
+info:
+  name: Admin Create Service
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/services"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Post-Operative Wound Dressing & Care",
+        "category": 0,
+        "description": "Professional clinical dressing, antiseptic cleaning, and surgical stitch inspection by a registered nurse.",
+        "base_price": 650,
+        "duration_minutes": 45,
+        "prescription_mandatory": true,
+        "visible_in_app": true,
+        "image_url": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: "if (res.getStatus() === 201) {\r
+
+        \  var json = res.getBody();\r
+
+        \  if (json.service && json.service.id) bru.setCollectionVar(\"serviceId\", json.service.id);\r
+
+        }"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates a new catalog service with category (0: Medicated, 1: Non-Medicated) and mandatory prescription rule."

@@ -1,0 +1,7 @@
+info:
+  name: 12. Admin Catalog Management
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit

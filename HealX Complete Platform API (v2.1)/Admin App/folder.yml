@@ -1,0 +1,7 @@
+info:
+  name: Admin App
+  type: folder
+  seq: 21
+
+request:
+  auth: inherit

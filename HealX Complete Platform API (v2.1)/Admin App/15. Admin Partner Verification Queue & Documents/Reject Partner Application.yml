@@ -1,0 +1,29 @@
+info:
+  name: Reject Partner Application
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}/reject"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "rejection_reason": "Failed background credential verification with state nursing council."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Rejects application, stores rejection reason, writes audit log, and sends notification.

@@ -1,0 +1,28 @@
+info:
+  name: Admin List Partners
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/partners?status=active&category=nurse"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: status
+      value: active
+      type: query
+    - name: category
+      value: nurse
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Lists registered healthcare partners with performance rating, work type, status, and floating cash balance.

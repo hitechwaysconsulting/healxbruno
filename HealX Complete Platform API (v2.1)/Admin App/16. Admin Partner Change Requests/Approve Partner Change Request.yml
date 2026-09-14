@@ -1,0 +1,21 @@
+info:
+  name: Approve Partner Change Request
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-change-requests/{{changeRequestId}}/approve"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Approves change request and applies zone or work_type change to partner. Note: If within the 30-day lock period, only a Super Admin (role_id: 1) can approve; non-super admins receive 403."

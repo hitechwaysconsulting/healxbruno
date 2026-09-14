@@ -1,0 +1,28 @@
+info:
+  name: Admin Audit Logs Explorer
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/audit-logs?module=partners&limit=50"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: module
+      value: partners
+      type: query
+    - name: limit
+      value: "50"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Tamper-evident audit log of administrative actions, entity modifications, before/after JSON diffs, and IP addresses.

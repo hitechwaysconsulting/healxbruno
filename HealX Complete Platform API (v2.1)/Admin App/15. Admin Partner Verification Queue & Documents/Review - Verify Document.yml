@@ -1,0 +1,30 @@
+info:
+  name: Review / Verify Document
+  type: http
+  seq: 3
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}/documents/aadhaar"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "verified",
+        "reviewer_note": "Aadhaar verified against UIDAI QR code scan."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Marks a specific document ('aadhaar', 'pan', 'certification', 'driving_license') as verified or rejected. If all documents are verified, application status auto-advances to 'ready_to_approve'.

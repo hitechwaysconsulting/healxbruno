@@ -1,0 +1,31 @@
+info:
+  name: Admin Update Promo Code
+  type: http
+  seq: 5
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/promo-codes/{{promoCodeId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "title": "Festive Extended Discount",
+        "total_limit": 1000,
+        "visible_to_customers": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Updates limits, titles, or active status of a promo code.

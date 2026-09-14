@@ -1,0 +1,30 @@
+info:
+  name: Admin Record Partner Wrong Action
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}/wrong-actions"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "order_id": "{{bookingId}}",
+        "description": "Partner arrived 45 minutes late without prior notification."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Ingests and audits a disciplinary infraction against a healthcare partner.

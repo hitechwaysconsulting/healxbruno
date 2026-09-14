@@ -1,0 +1,29 @@
+info:
+  name: Admin Assign Partner to Booking
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/bookings/{{bookingId}}/assign"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "partner_id": "{{partnerId}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Assigns a qualified partner to an order and updates status to 'assigned'. Aliases: POST /bookings/:id/assign."

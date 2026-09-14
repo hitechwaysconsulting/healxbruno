@@ -1,0 +1,29 @@
+info:
+  name: Deny Partner Change Request
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-change-requests/{{changeRequestId}}/deny"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "decision_reason": "Requested zone currently has surplus partner capacity."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Denies partner change request with recorded administrative reason.

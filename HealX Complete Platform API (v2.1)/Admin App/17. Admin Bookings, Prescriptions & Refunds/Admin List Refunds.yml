@@ -1,0 +1,31 @@
+info:
+  name: Admin List Refunds
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/refunds?status=pending&page=1&limit=20"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: status
+      value: pending
+      type: query
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "20"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: Lists all customer refund requests initiated due to cancellations or service issues.
