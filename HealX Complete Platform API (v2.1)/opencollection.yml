@@ -2,65 +2,26 @@ opencollection: 1.0.0
 
 info:
   name: HealX Complete Platform API (v2.1)
+config:
+  proxy:
+    inherit: true
+    config:
+      protocol: http
+      hostname: ""
+      port: ""
+      auth:
+        username: ""
+        password: ""
+      bypassProxy: ""
 
 request:
   variables:
-    - name: baseUrl
-      value: http://localhost:3000
     - name: customerToken
-      value: ""
-    - name: partnerToken
-      value: ""
-    - name: adminToken
-      value: ""
-    - name: adminEmail
-      value: admin@healx.com
-    - name: adminPassword
-      value: Admin@12345
-    - name: testCustomerPhone
-      value: "+919876543210"
-    - name: testCustomerEmail
-      value: patient@healx.com
-    - name: applicationId
-      value: ""
-    - name: changeRequestId
-      value: ""
-    - name: serviceId
-      value: ""
-    - name: medServiceId
-      value: ""
-    - name: cartItemId
-      value: ""
-    - name: addressId
-      value: ""
-    - name: familyMemberId
-      value: ""
-    - name: bookingId
-      value: ""
-    - name: visitId
-      value: ""
-    - name: partnerId
-      value: ""
-    - name: customerId
-      value: ""
-    - name: stateId
-      value: "1"
-    - name: cityId
-      value: "1"
-    - name: zoneId
-      value: "1"
-    - name: promoCodeId
-      value: ""
-    - name: promoCode
-      value: WELCOME50
-    - name: refundId
-      value: ""
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjY2EyYzE4LWJlOGEtNDk1MS04ODU1LTUzYmI0MGFjY2IyOCIsImVtYWlsIjoibW9oZG11cnR1emFraGFuQGdtYWlsLmNvbSIsInBob25lIjoiOTM5Njg3ODg5MiIsImFjdG9yVHlwZSI6ImN1c3RvbWVyIiwiYWN0b3JJZCI6ImFjY2EyYzE4LWJlOGEtNDk1MS04ODU1LTUzYmI0MGFjY2IyOCIsImlhdCI6MTc4OTM4NTI1NCwiZXhwIjoxNzg5Mzg2MTU0fQ.COvMeR-DGZS_cj7dZHz4skr3zt7LRbWtk9QZPifPeWI
     - name: refreshToken
-      value: ""
-    - name: startOtp
-      value: ""
-    - name: completionOtp
-      value: ""
+      value: 87b39f26c2c421f6128eed216d8afe3c625549ef4bfd494c11eebcac5173f98fdd5d962cf4ff790f
+    - name: customerId
+      value: acca2c18-be8a-4951-8855-53bb40accb28
 
 docs:
   content: "Exhaustive Postman Collection covering all 130+ endpoint instances across the HealX Healthcare Platform: Auth, Customer, Partner, Admin, Catalog, Bookings, Cart, Zones, Partner Verification Queue, Document Review, Change Requests, Cash Ledger, Refunds, and System Utilities. Includes dynamic variable extraction (tokens, IDs, OTPs) and realistic payloads."
