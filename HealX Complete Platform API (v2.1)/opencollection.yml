@@ -22,6 +22,46 @@ request:
       value: 87b39f26c2c421f6128eed216d8afe3c625549ef4bfd494c11eebcac5173f98fdd5d962cf4ff790f
     - name: customerId
       value: acca2c18-be8a-4951-8855-53bb40accb28
+    - name: baseUrl
+      value: http://localhost:3000
+    - name: adminToken
+      value: ""
+    - name: partnerToken
+      value: ""
+    - name: adminEmail
+      value: admin@healx.com
+    - name: adminPassword
+      value: Admin@12345
+    - name: roleId
+      value: "1"
+    - name: targetAdminId
+      value: ""
+    - name: patientId
+      value: ""
+    - name: bookingId
+      value: ""
+    - name: serviceId
+      value: ""
+    - name: stateId
+      value: "1"
+    - name: cityId
+      value: "1"
+    - name: zoneId
+      value: "1"
+    - name: prescriptionFileKey
+      value: ""
+    - name: fileKey
+      value: ""
+    - name: docType
+      value: aadhaar
+    - name: categorySlug
+      value: nursing
+    - name: aadhaarFileKey
+      value: ""
+    - name: panFileKey
+      value: ""
+    - name: certFileKey
+      value: ""
 
 docs:
   content: "Exhaustive Postman Collection covering all 130+ endpoint instances across the HealX Healthcare Platform: Auth, Customer, Partner, Admin, Catalog, Bookings, Cart, Zones, Partner Verification Queue, Document Review, Change Requests, Cash Ledger, Refunds, and System Utilities. Includes dynamic variable extraction (tokens, IDs, OTPs) and realistic payloads."

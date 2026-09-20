@@ -1,0 +1,43 @@
+info:
+  name: Create Zone in City (Nested Path)
+  type: http
+  seq: 23
+
+http:
+  method: POST
+  url: "{{baseUrl}}/states/{{stateId}}/cities/{{cityId}}/zones"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "zone_name": "Koramangala Medical Corridor",
+        "capacity": 30,
+        "surge_factor": 1.0,
+        "geojson": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [77.6100, 12.9250],
+              [77.6400, 12.9250],
+              [77.6400, 12.9450],
+              [77.6100, 12.9450],
+              [77.6100, 12.9250]
+            ]
+          ]
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Nested RESTful route for creating a geofenced zone under a specific state and city hierarchy."

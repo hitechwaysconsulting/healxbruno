@@ -1,0 +1,21 @@
+info:
+  name: Admin List Modules
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/modules"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Lists all platform system modules available for granular RBAC permission configuration (can_view, can_edit, can_delete, can_approve)."

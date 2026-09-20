@@ -1,0 +1,30 @@
+info:
+  name: Admin Update Admin User
+  type: http
+  seq: 9
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/admins/{{targetAdminId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Senior Audit Manager",
+        "status": "active"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Updates admin user fields (name, phone, status: active/deactivated, role_id). Protected: Built-in self-lock guard prevents admins from deactivating their own account."

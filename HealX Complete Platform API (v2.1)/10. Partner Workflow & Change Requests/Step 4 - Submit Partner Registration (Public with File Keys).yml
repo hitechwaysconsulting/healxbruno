@@ -1,0 +1,53 @@
+info:
+  name: Step 4 - Submit Partner Registration (Public with File Keys)
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/apply"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Dr. Rajesh Sharma",
+        "phone": "+919876543210",
+        "email": "dr.sharma@example.com",
+        "work_type": "full_time",
+        "category": "medicated",
+        "gender": "male",
+        "dob": "1988-04-20",
+        "emergency_contact": "+919876543219",
+        "zone_id": 1,
+        "aadhaar_file_key": "{{aadhaarFileKey}}",
+        "pan_file_key": "{{panFileKey}}",
+        "cert_file_key": "{{certFileKey}}",
+        "bank_account_no": "50100234567891",
+        "bank_ifsc": "SBIN0001234",
+        "bank_account_name": "Dr. Rajesh Sharma"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.application && json.application.id) {
+            bru.setCollectionVar("applicationId", json.application.id);
+            console.log("Captured applicationId:", json.application.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 4 of partner onboarding: Finalizes and submits the partner application with pre-uploaded document keys into the admin verification queue. Aliases: POST /partners/apply, POST /auth/apply-partner."

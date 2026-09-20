@@ -1,0 +1,27 @@
+info:
+  name: Step 3 - Upload Profile Picture (Face Verification)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/profile-picture/upload"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        value: ""
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 3 of partner onboarding: Uploads partner portrait photo with automated face verification validation (JPEG/PNG/WebP > 10KB). Aliases: POST /partners/profile-picture/upload."

@@ -1,0 +1,21 @@
+info:
+  name: Admin Delete Role
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/admin/roles/{{roleId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Deletes an admin role. Protected: Cannot delete the root Super Admin role (ID 1) or any role that currently has active admins assigned."

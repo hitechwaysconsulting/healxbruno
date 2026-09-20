@@ -1,0 +1,7 @@
+info:
+  name: 20. Admin Roles & Staff Management (RBAC)
+  type: folder
+  seq: 20
+
+request:
+  auth: inherit

@@ -1,0 +1,42 @@
+info:
+  name: Admin Create Role
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/roles"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Operations Auditor",
+        "description": "Compliance auditor for booking logs and cash reconciliation"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.role && json.role.id) {
+            bru.setCollectionVar("roleId", json.role.id);
+            console.log("Captured roleId:", json.role.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates a new custom RBAC administrative role. Role names must be unique across the platform."

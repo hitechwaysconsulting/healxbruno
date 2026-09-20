@@ -1,0 +1,33 @@
+info:
+  name: Step 2 - Add Partner Bank Details
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/bank-details"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "bank_name": "State Bank of India",
+        "account_number": "50100234567891",
+        "ifsc": "SBIN0001234",
+        "account_holder_name": "Dr. Rajesh Sharma",
+        "branch_name": "Indiranagar Branch, Bengaluru"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 2 of partner onboarding: Saves bank account details. Bank account numbers are encrypted at rest using AES-256-CBC. Aliases: POST /partners/bank-details."

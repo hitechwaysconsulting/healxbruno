@@ -1,0 +1,45 @@
+info:
+  name: Admin Create Admin User
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/admins"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Auditor Staff",
+        "email": "auditor_staff@healx.com",
+        "phone": "+919988112233",
+        "password": "InitialSecurePassword123!",
+        "role_id": {{roleId}}
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.admin && json.admin.id) {
+            bru.setCollectionVar("targetAdminId", json.admin.id);
+            console.log("Captured targetAdminId:", json.admin.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates a new administrative staff member account linked to a role. Aliases: POST /admin/create-admin, POST /auth/register-admin."

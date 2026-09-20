@@ -1,0 +1,29 @@
+info:
+  name: Admin Update Role
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/roles/{{roleId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "description": "Updated auditor description with expanded regional compliance responsibilities"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Updates role details (name and/or description). Rejects empty update payloads with 422."

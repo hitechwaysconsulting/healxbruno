@@ -1,0 +1,37 @@
+info:
+  name: Admin Update Permission Overrides
+  type: http
+  seq: 12
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/admins/{{targetAdminId}}/permission-overrides"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "overrides": [
+          {
+            "module_id": 1,
+            "can_view": true,
+            "can_edit": true,
+            "can_delete": false,
+            "can_approve": false
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Bulk upserts user-level permission overrides for a specific admin user."

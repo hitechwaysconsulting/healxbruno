@@ -1,0 +1,31 @@
+info:
+  name: Admin Update Customer Status & Details
+  type: http
+  seq: 7
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/customers/{{customerId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "blocked",
+        "block_reason": "Repeated booking cancellations without notice",
+        "receive_whatsapp_updates": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Allows admin to update customer name, email, WhatsApp update preferences, and status (active, blocked, deactivated). Requires block_reason or deactivate_reason when suspending. Aliases: PATCH /customers/:id."

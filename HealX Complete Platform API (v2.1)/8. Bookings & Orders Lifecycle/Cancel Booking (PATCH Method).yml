@@ -1,0 +1,30 @@
+info:
+  name: Cancel Booking (PATCH Method)
+  type: http
+  seq: 15
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/bookings/{{bookingId}}/cancel"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "reason": "Customer requested cancellation before partner dispatch",
+        "reason_code": "CUSTOMER_RESCHEDULE"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Cancels a booking via PATCH method. Automatically processes refunds or adjusts partner assignments."

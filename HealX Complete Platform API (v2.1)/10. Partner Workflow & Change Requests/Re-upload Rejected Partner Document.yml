@@ -1,0 +1,30 @@
+info:
+  name: Re-upload Rejected Partner Document
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/applications/{{applicationId}}/documents/{{docType}}/reupload"
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        value: ""
+        type: file
+      - name: document_number
+        value: "123456789012"
+        type: text
+      - name: expiry_date
+        value: "2032-01-01"
+        type: text
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Allows partner applicants to re-upload a specific document that was rejected by an admin reviewer (docType: aadhaar, pan, cert, driving_license). Aliases: POST /partners/applications/:id/documents/:docType/reupload."

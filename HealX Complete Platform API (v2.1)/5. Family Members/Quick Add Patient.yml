@@ -1,0 +1,49 @@
+info:
+  name: Quick Add Patient
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/patients"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Ramesh Sharma",
+        "relationship": "Father",
+        "age": 65,
+        "gender": "male",
+        "blood_group": "B+",
+        "allergies": "Penicillin"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 || res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.patient && json.patient.id) {
+            bru.setCollectionVar("patientId", json.patient.id);
+            console.log("Captured patientId:", json.patient.id);
+          } else if (json.member && json.member.id) {
+            bru.setCollectionVar("patientId", json.member.id);
+            console.log("Captured patientId:", json.member.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Quickly registers a new patient/family member during the booking or cart checkout flow."

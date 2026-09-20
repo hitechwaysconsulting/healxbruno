@@ -1,0 +1,48 @@
+info:
+  name: Step 1 - Upload Partner Document (R2)
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/documents/upload"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: type
+        value: "0"
+        type: text
+      - name: document_number
+        value: "123456789012"
+        type: text
+      - name: expiry_date
+        value: "2030-12-31"
+        type: text
+      - name: file
+        value: ""
+        type: file
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200 || res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.file_key) {
+            bru.setCollectionVar("aadhaarFileKey", json.file_key);
+            console.log("Captured aadhaarFileKey:", json.file_key);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 1 of partner onboarding: Uploads verification document (type: 0=Aadhaar, 1=PAN, 2=Certificate) directly to Cloudflare R2 / S3 storage. Requires partner auth. Aliases: POST /partners/documents/upload."

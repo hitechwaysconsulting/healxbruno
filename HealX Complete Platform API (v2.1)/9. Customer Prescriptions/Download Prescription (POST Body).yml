@@ -1,0 +1,30 @@
+info:
+  name: Download Prescription (POST Body)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/prescriptions/download"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "customer_id": "{{customerId}}",
+        "file_key": "{{prescriptionFileKey}}"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Downloads prescription via POST body specification."

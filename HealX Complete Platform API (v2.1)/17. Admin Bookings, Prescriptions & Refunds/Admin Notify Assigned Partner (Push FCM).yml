@@ -1,0 +1,21 @@
+info:
+  name: Admin Notify Assigned Partner (Push FCM)
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/bookings/{{bookingId}}/notify-partner"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Triggers on-demand high-priority Firebase push notification to the assigned partner's registered Firebase ID (FID) with service details and deep links. Aliases: POST /bookings/:id/notify-partner."

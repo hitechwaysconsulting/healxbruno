@@ -1,0 +1,28 @@
+info:
+  name: Get Customer Pre-signed File Download URL
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/user/files/signed-url?file_key={{fileKey}}&file_type=prescription"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  params:
+    - name: file_key
+      value: "{{fileKey}}"
+      type: query
+    - name: file_type
+      value: prescription
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Generates secure pre-signed download URL for customer files. Supported file_type values: prescription, profile, family_member, partner_photo. Aliases: GET /customer/files/signed-url, GET /customers/files/signed-url."

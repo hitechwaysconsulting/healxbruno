@@ -1,0 +1,44 @@
+info:
+  name: Admin Update Role Permissions (Bulk Upsert)
+  type: http
+  seq: 7
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/admin/roles/{{roleId}}/permissions"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "permissions": [
+          {
+            "module_id": 1,
+            "can_view": true,
+            "can_edit": true,
+            "can_delete": false,
+            "can_approve": true
+          },
+          {
+            "module_id": 2,
+            "can_view": true,
+            "can_edit": false,
+            "can_delete": false,
+            "can_approve": false
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Bulk upserts module permissions for a role with can_view, can_edit, can_delete, and can_approve boolean flags."
