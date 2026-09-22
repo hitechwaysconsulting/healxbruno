@@ -1,0 +1,29 @@
+info:
+  name: Admin Upload Service Image
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/services/{{serviceId}}/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads or updates service image. Supports direct binary upload to Cloudflare R2 bucket ('service-images') via multipart form-data (field 'image') or remote image URL via JSON ('image_url'). Audit logged."

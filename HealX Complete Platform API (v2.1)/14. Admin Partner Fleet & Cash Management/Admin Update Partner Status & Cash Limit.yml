@@ -16,7 +16,8 @@ http:
     data: |-
       {
         "status": "active",
-        "floating_cash_limit": 7500
+        "floating_cash_limit": 7500,
+        "zone_id": 1
       }
   auth: inherit
 
@@ -27,4 +28,4 @@ settings:
   maxRedirects: 5
   forwardAuthorizationHeader: false
 
-docs: Modifies partner status (active, suspended, deactivated) and customizes maximum allowed floating cash limit.
+docs: "Modifies partner status (active, suspended, deactivated), customizes floating cash limit, and reassigns operational zone_id."

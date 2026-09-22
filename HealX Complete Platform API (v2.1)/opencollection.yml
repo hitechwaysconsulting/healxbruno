@@ -62,6 +62,12 @@ request:
       value: ""
     - name: certFileKey
       value: ""
+    - name: prescriptionId
+      value: ""
+    - name: applicationId
+      value: ""
+    - name: partnerId
+      value: ""
 
 docs:
   content: "Exhaustive Postman Collection covering all 130+ endpoint instances across the HealX Healthcare Platform: Auth, Customer, Partner, Admin, Catalog, Bookings, Cart, Zones, Partner Verification Queue, Document Review, Change Requests, Cash Ledger, Refunds, and System Utilities. Includes dynamic variable extraction (tokens, IDs, OTPs) and realistic payloads."

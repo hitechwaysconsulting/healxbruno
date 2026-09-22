@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{baseUrl}}/admin/partners?status=active&category=nurse"
+  url: "{{baseUrl}}/admin/partners?status=active&category=nurse&zone_id=1"
   headers:
     - name: Authorization
       value: Bearer {{adminToken}}
@@ -16,6 +16,9 @@ http:
     - name: category
       value: nurse
       type: query
+    - name: zone_id
+      value: "1"
+      type: query
   auth: inherit
 
 settings:
@@ -25,4 +28,4 @@ settings:
   maxRedirects: 5
   forwardAuthorizationHeader: false
 
-docs: Lists registered healthcare partners with performance rating, work type, status, and floating cash balance.
+docs: "Lists registered healthcare partners with performance rating, work type, status, zone_id, zone_name, and floating cash balance. Supports filter by zone_id."
