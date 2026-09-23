@@ -1,0 +1,30 @@
+info:
+  name: 4. Admin Update Ticket Status
+  type: http
+  seq: 4
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/tickets/{{ticketId}}/status"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "status": "resolved",
+        "resolution_notes": "Nurse arrived and completed the scheduled dressing visit."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Resolves or closes the ticket. Sets resolved_at = NOW() when status is 'resolved' or 'closed'."

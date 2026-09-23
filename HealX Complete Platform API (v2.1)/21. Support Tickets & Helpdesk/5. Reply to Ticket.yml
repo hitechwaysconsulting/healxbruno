@@ -1,0 +1,30 @@
+info:
+  name: 5. Reply to Ticket
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/tickets/{{ticketId}}/messages"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "message": "Thank you, any update on their ETA?",
+        "attachment_url": null
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Appends a new message to the ticket thread. Re-opens ticket if status was 'resolved'."

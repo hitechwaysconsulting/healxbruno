@@ -1,0 +1,44 @@
+info:
+  name: 2. Create Support Ticket
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/tickets"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "category_id": 1,
+        "order_id": "b3c2d1e0-4a5b-6c7d-8e9f-0a1b2c3d4e5f",
+        "message": "Partner has not arrived yet for the scheduled 10:00 AM dressing visit.",
+        "attachment_url": "https://pub-r2.healx.care/tickets/attachment-sample.jpg"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 201) {
+          var json = res.getBody();
+          if (json.ticket && json.ticket.id) {
+            bru.setCollectionVar("ticketId", json.ticket.id);
+            console.log("Captured ticketId:", json.ticket.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates a new support ticket. Auto-generates a unique ticket_number (e.g. TCK-10492) and creates the initial message in ticket_messages."

@@ -1,0 +1,30 @@
+info:
+  name: 3. Admin Reply to Ticket
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/tickets/{{ticketId}}/messages"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "message": "We have confirmed with your nurse, they are 5 minutes away and will arrive shortly.",
+        "attachment_url": null
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Sends an admin response message on the ticket. Sets sender_type to 'admin' and records sender_admin_id."

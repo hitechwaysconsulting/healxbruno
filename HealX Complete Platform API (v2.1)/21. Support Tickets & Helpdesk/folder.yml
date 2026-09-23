@@ -1,0 +1,7 @@
+info:
+  name: 21. Support Tickets & Helpdesk
+  type: folder
+  seq: 21
+
+request:
+  auth: inherit

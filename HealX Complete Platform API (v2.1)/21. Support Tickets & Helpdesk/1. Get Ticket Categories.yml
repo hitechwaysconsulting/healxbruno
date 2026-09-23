@@ -1,0 +1,25 @@
+info:
+  name: 1. Get Ticket Categories
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/tickets/categories?source_app=customer"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  params:
+    - name: source_app
+      value: customer
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Retrieves support categories (e.g. Booking Delay, Payment Issue, Service Quality, Medical Query). Filter by source_app: 'customer' or 'partner'."

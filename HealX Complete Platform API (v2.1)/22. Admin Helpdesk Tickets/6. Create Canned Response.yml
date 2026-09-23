@@ -1,0 +1,31 @@
+info:
+  name: 6. Create Canned Response
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/tickets/canned-responses"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "category_id": 1,
+        "title": "Partner Reassigned",
+        "body": "Due to an unexpected delay with your original caregiver, we have reassigned your visit to another qualified partner in your zone."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates a reusable canned reply for support agents."

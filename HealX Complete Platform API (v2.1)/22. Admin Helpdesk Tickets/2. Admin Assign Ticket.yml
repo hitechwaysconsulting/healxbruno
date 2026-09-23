@@ -1,0 +1,29 @@
+info:
+  name: 2. Admin Assign Ticket
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/admin/tickets/{{ticketId}}/assign"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "assigned_to": "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Assigns or re-assigns the ticket to an admin support agent. Automatically transitions status to 'in_progress'."

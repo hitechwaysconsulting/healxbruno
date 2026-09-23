@@ -1,0 +1,34 @@
+info:
+  name: 1. Admin List All Tickets
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/admin/tickets?status=open&source_app=customer&page=1&limit=20"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: status
+      value: open
+      type: query
+    - name: source_app
+      value: customer
+      type: query
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "20"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Admin helpdesk queue with multi-criteria filtering, user details, and assignment status."

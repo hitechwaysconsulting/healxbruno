@@ -1,7 +1,7 @@
 info:
-  name: Admin App
+  name: 22. Admin Helpdesk Tickets
   type: folder
-  seq: 24
+  seq: 9
 
 request:
   auth: inherit
