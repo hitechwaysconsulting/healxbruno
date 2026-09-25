@@ -1,0 +1,27 @@
+info:
+  name: Upload Profile Image (Multipart Form-Data)
+  type: http
+  seq: 8
+
+http:
+  method: POST
+  url: "{{baseUrl}}/user/profile/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads actor profile photo (JPEG, PNG, WebP up to 10MB) directly to Cloudflare R2 bucket 'customer-profile-pics' or 'partner-profile-pics'. Stores 'profile_image_key' in PostgreSQL."

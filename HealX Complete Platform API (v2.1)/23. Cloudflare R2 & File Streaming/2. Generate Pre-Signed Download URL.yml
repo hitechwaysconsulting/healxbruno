@@ -1,0 +1,28 @@
+info:
+  name: Generate Pre-Signed Download URL
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/files/signed-url?bucket=services&key=service-1727284000-a1b2c3d4e5f6.jpg&expires_in=3600"
+  params:
+    - name: bucket
+      value: services
+      type: query
+    - name: key
+      value: service-1727284000-a1b2c3d4e5f6.jpg
+      type: query
+    - name: expires_in
+      value: "3600"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Generates a time-limited AWS Signature v4 pre-signed URL for secure access to private R2 files without making the bucket public. Query params: bucket (required), key (required), expires_in (default 3600), redirect (optional boolean)."

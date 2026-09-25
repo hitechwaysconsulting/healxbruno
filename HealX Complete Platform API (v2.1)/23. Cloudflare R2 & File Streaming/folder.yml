@@ -1,0 +1,7 @@
+info:
+  name: 23. Cloudflare R2 & File Streaming
+  type: folder
+  seq: 23
+
+request:
+  auth: inherit

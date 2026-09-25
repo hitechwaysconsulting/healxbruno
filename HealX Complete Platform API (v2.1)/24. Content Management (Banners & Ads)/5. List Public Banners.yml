@@ -1,0 +1,18 @@
+info:
+  name: List Public Banners
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/banners"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Fetches active promotional hero banners for mobile app and web frontend home screens with image_url and image_key."

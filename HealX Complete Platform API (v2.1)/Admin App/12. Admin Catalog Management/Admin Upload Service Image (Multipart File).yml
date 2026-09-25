@@ -1,0 +1,27 @@
+info:
+  name: Admin Upload Service Image (Multipart File)
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/services/{{serviceId}}/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads service image directly to Cloudflare R2 bucket 'services' via multipart form-data (field 'image'), deletes the previous image object from R2 if one existed, updates 'services.image_key' and 'services.image_url' in PostgreSQL, and logs an admin audit event."

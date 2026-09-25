@@ -1,0 +1,30 @@
+info:
+  name: Upload Prescription (Multipart Form-Data)
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/prescriptions/upload"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: file
+        value: []
+        type: file
+      - name: order_id
+        value: "{{bookingId}}"
+        type: text
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads customer medical prescription (PDF, JPEG, PNG up to 15MB) to Cloudflare R2 bucket 'customer-prescriptions'. Generates secure file_key and stores in PostgreSQL prescriptions table. Canonical alias: POST /user/prescriptions."

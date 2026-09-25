@@ -1,0 +1,30 @@
+info:
+  name: Admin Create Category Banner
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/category-banners"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: category
+        value: "medicated"
+        type: text
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads category banner to 'content-banners' R2 bucket and associates banner with service category (e.g. medicated, non-medicated)."

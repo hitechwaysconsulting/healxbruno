@@ -23,7 +23,7 @@ request:
     - name: customerId
       value: acca2c18-be8a-4951-8855-53bb40accb28
     - name: baseUrl
-      value: http://localhost:3000
+      value: https://healxapi-1.onrender.com
     - name: adminToken
       value: ""
     - name: partnerToken
@@ -69,7 +69,13 @@ request:
     - name: partnerId
       value: ""
     - name: ticketId
-      value: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      value: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+    - name: bucket
+      value: services
+    - name: imageKey
+      value: service-1727284000-c9a8b7d6e5f4.jpg
+    - name: bannerId
+      value: "1"
 
 docs:
   content: "Exhaustive Postman Collection covering all 130+ endpoint instances across the HealX Healthcare Platform: Auth, Customer, Partner, Admin, Catalog, Bookings, Cart, Zones, Partner Verification Queue, Document Review, Change Requests, Cash Ledger, Refunds, and System Utilities. Includes dynamic variable extraction (tokens, IDs, OTPs) and realistic payloads."

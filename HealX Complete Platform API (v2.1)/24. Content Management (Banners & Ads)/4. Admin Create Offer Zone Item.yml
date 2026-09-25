@@ -1,0 +1,33 @@
+info:
+  name: Admin Create Offer Zone Item
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/offer-zone"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        value: "Monsoon Health Checkup 20% Off"
+        type: text
+      - name: body
+        value: "Valid for elderly care packages"
+        type: text
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Creates an offer zone promotion card with banner image stored in R2 bucket 'content-banners'."

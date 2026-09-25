@@ -13,8 +13,8 @@ http:
     type: json
     data: |-
       {
-        "email": "{{testCustomerEmail}}",
-        "otp": "123456",
+        "email": "link123su@gmail.com",
+        "otp": "743716",
         "userType": 1
       }
   auth: inherit

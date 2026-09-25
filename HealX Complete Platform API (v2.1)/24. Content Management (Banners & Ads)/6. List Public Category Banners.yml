@@ -1,0 +1,18 @@
+info:
+  name: List Public Category Banners
+  type: http
+  seq: 6
+
+http:
+  method: GET
+  url: "{{baseUrl}}/category-banners"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Fetches category-specific promotional banners."

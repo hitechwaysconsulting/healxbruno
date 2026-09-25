@@ -1,0 +1,7 @@
+info:
+  name: 24. Content Management (Banners & Ads)
+  type: folder
+  seq: 24
+
+request:
+  auth: inherit

@@ -14,12 +14,11 @@ http:
     data: |-
       {
         "name": "Rahul Sharma",
-        "phone": "+919876543210",
-        "email": "rahul.sharma@example.com",
+        "phone": "+919876543215",
+        "email": "rahul.sharmb@example.com",
         "gender": "male",
         "dob": "1992-08-14",
-        "emergency_contact": "+919876543299",
-        "profile_image": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400",
+        "emergency_contact": "+919876543279",
         "referral_code": "HEALTHY10"
       }
   auth: inherit

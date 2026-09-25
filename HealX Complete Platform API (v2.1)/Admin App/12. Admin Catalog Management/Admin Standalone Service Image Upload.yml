@@ -1,0 +1,27 @@
+info:
+  name: Admin Standalone Service Image Upload
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/services/upload-image"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Upload an image prior to creating a service. Direct binary image file upload (JPEG, PNG, WebP up to 10MB) to Cloudflare R2 bucket 'services'. Returns image_key and image_url which can be passed to POST /admin/services as { image_key }."

@@ -1,0 +1,36 @@
+info:
+  name: Admin Create Hero Banner
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/banners"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: title
+        value: "Home Healthcare Special"
+        type: text
+      - name: image
+        value: []
+        type: file
+      - name: link_target
+        value: "https://healx.care/offer"
+        type: text
+      - name: sort_order
+        value: "1"
+        type: text
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads hero banner to Cloudflare R2 bucket 'content-banners', stores 'image_key' in PostgreSQL, and returns created banner record."

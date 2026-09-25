@@ -1,0 +1,27 @@
+info:
+  name: Upload Family Member Image (Multipart Form-Data)
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/family-members/{{familyMemberId}}/image"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads family member avatar directly to Cloudflare R2 bucket 'customer-profile-pics' and saves 'family_members.profile_image_key' in PostgreSQL. Canonical alias: POST /user/family-members/:id/image."

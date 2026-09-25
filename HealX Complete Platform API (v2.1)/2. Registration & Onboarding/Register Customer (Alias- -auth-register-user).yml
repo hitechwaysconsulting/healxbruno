@@ -13,9 +13,9 @@ http:
     type: json
     data: |-
       {
-        "name": "Priya Patel",
-        "phone": "+919811223344",
-        "email": "priya.patel@example.com",
+        "name": "Priya Patll",
+        "phone": "+919811223366",
+        "email": "priya.patel2@example.com",
         "gender": "female",
         "dob": "1995-03-22"
       }

@@ -1,0 +1,30 @@
+info:
+  name: Upload Partner Document (Direct Route)
+  type: http
+  seq: 10
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/documents"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: type
+        value: aadhaar
+        type: text
+      - name: file
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Uploads KYC verification document (Aadhaar, PAN, Nursing Registration) directly to Cloudflare R2 bucket 'partner-documents' and stores 'file_key' in partner_documents_files table. Canonical alias: POST /partner/documents/upload."

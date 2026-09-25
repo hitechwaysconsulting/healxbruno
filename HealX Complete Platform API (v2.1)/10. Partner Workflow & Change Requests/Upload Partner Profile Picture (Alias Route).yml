@@ -1,0 +1,27 @@
+info:
+  name: Upload Partner Profile Picture (Alias Route)
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/profile/picture"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        value: []
+        type: file
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Validates minimum face photo size (10KB), uploads portrait photo to Cloudflare R2 bucket 'partner-profile-pics', and saves 'partners.profile_image_key' in PostgreSQL. Canonical alias: POST /partner/profile-picture/upload."

@@ -1,0 +1,25 @@
+info:
+  name: Stream or View Uploaded File by Key
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/files/:bucket/:key"
+  params:
+    - name: bucket
+      value: services
+      type: path
+    - name: key
+      value: service-1727284000-a1b2c3d4e5f6.jpg
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Direct binary streaming of any file from Cloudflare R2. Pipes stream directly into HTTP response with content-type and client cache headers (Cache-Control: public, max-age=86400). Automatically falls back to local disk in offline/dev environments."

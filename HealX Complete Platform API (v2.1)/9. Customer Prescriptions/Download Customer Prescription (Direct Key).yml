@@ -1,0 +1,21 @@
+info:
+  name: Download Customer Prescription (Direct Key)
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/prescriptions/download/{{prescriptionFileKey}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Streams customer prescription file binary directly from Cloudflare R2 with Content-Disposition attachment. Canonical alias: GET /user/prescriptions/:fileKey/download."

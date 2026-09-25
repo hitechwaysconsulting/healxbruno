@@ -1,7 +1,7 @@
 info:
   name: Customer App
   type: folder
-  seq: 23
+  seq: 25
 
 request:
   auth: inherit
