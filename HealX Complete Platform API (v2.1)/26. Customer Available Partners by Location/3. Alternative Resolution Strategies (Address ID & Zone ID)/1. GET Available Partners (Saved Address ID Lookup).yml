@@ -1,0 +1,25 @@
+info:
+  name: "GET /partners/by-location (Saved Address ID Lookup)"
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partners/by-location?address_id={{testAddressId}}"
+  headers:
+    - name: Authorization
+      value: Bearer {{customerToken}}
+  params:
+    - name: address_id
+      value: "{{testAddressId}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Resolves zone and available partners directly from a customer's saved address."

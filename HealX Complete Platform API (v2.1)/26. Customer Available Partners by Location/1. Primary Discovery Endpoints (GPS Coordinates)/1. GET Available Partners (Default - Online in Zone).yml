@@ -1,0 +1,31 @@
+info:
+  name: "GET /partners/by-location (Default: Online Partners in Zone)"
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partners/by-location?lat=12.9716&lng=77.6412&page=1&limit=20"
+  params:
+    - name: lat
+      value: "12.9716"
+      type: query
+    - name: lng
+      value: "77.6412"
+      type: query
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "20"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Returns verified online partners in the resolved zone with ratings, completed visits, and zone capacity metrics."

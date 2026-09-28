@@ -1,0 +1,28 @@
+info:
+  name: "GET /partners/by-location (Available Now Only - Free from Active Visits)"
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partners/by-location?lat=12.9716&lng=77.6412&available_only=true"
+  params:
+    - name: lat
+      value: "12.9716"
+      type: query
+    - name: lng
+      value: "77.6412"
+      type: query
+    - name: available_only
+      value: "true"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Filters out partners who are currently assigned, in transit, or on active visits."

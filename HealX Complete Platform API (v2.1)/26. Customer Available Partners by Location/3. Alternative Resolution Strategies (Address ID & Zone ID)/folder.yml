@@ -1,0 +1,7 @@
+info:
+  name: "3. Alternative Resolution Strategies (Address ID & Zone ID)"
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit

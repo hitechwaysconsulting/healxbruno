@@ -1,0 +1,18 @@
+info:
+  name: "GET /partners/by-location (Missing Parameters - 422)"
+  type: http
+  seq: 3
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partners/by-location"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Validates 422 error response when no location parameter is provided."

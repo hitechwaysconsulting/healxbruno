@@ -1,0 +1,7 @@
+info:
+  name: "1. Primary Discovery Endpoints (GPS Coordinates)"
+  type: folder
+  seq: 1
+
+request:
+  auth: inherit
