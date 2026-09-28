@@ -1,0 +1,25 @@
+info:
+  name: "GET Admin Zone Services Matrix"
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/zones/{{testZoneId}}/services?limit=50"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+  params:
+    - name: limit
+      value: "50"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Admin endpoint to inspect all catalog services and their enabled status for a zone."

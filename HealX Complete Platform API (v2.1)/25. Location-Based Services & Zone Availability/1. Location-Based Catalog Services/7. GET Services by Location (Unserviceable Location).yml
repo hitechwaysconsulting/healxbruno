@@ -1,0 +1,25 @@
+info:
+  name: "GET Services by Location (Unserviceable Location)"
+  type: http
+  seq: 7
+
+http:
+  method: GET
+  url: "{{baseUrl}}/services/by-location?lat=25.2048&lng=55.2708"
+  params:
+    - name: lat
+      value: "25.2048"
+      type: query
+    - name: lng
+      value: "55.2708"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Demonstrates the response when coordinates fall outside all active zones (is_serviceable: false)."

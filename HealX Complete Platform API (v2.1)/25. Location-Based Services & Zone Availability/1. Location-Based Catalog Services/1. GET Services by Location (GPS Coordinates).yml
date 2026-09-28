@@ -1,0 +1,31 @@
+info:
+  name: "GET Services by Location (GPS Coordinates - Indiranagar)"
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{baseUrl}}/services/by-location?lat=12.9716&lng=77.6412&page=1&limit=20"
+  params:
+    - name: lat
+      value: "12.9716"
+      type: query
+    - name: lng
+      value: "77.6412"
+      type: query
+    - name: page
+      value: "1"
+      type: query
+    - name: limit
+      value: "20"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Returns active services available in the resolved zone for the given GPS coordinates."

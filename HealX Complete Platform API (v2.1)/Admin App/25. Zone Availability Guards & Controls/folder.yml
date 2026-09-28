@@ -1,0 +1,7 @@
+info:
+  name: "25. Zone Availability Guards & Controls"
+  type: folder
+  seq: 25
+
+request:
+  auth: inherit

@@ -14,7 +14,7 @@ http:
     data: |-
       {
         "email": "link123su@gmail.com",
-        "userType": 1
+        "userType": 2
       }
   auth: inherit
 

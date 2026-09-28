@@ -1,0 +1,7 @@
+info:
+  name: "25. Location-Based Services & Zone Availability"
+  type: folder
+  seq: 25
+
+request:
+  auth: inherit

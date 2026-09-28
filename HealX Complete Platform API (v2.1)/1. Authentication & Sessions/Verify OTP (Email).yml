@@ -15,7 +15,7 @@ http:
       {
         "email": "link123su@gmail.com",
         "otp": "743716",
-        "userType": 1
+        "userType": 2
       }
   auth: inherit
 

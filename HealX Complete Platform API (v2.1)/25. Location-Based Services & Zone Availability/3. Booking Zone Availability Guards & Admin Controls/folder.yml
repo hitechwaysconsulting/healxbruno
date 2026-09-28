@@ -1,0 +1,7 @@
+info:
+  name: "3. Booking Zone Availability Guards & Admin Controls"
+  type: folder
+  seq: 3
+
+request:
+  auth: inherit

@@ -1,0 +1,28 @@
+info:
+  name: "GET Services by Location (Category Filtered: Medicated)"
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: "{{baseUrl}}/services/by-location?lat=12.9716&lng=77.6412&category=0"
+  params:
+    - name: lat
+      value: "12.9716"
+      type: query
+    - name: lng
+      value: "77.6412"
+      type: query
+    - name: category
+      value: "0"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Filters available services in the resolved zone by category (0 = Medicated, 1 = Non-Medicated)."

@@ -1,0 +1,25 @@
+info:
+  name: "GET Services by Location (Paused Zone - Bookings Paused)"
+  type: http
+  seq: 8
+
+http:
+  method: GET
+  url: "{{baseUrl}}/services/by-location?lat=12.9698&lng=77.7500"
+  params:
+    - name: lat
+      value: "12.9698"
+      type: query
+    - name: lng
+      value: "77.7500"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Demonstrates the response when a zone is active but open_for_bookings is false."

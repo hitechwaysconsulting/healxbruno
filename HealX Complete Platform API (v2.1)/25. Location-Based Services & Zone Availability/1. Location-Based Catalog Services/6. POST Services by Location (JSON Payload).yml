@@ -1,0 +1,29 @@
+info:
+  name: "POST Services by Location (JSON Payload)"
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: "{{baseUrl}}/services/by-location"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "latitude": 12.9716,
+        "longitude": 77.6412,
+        "grouped": true
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Alternative POST endpoint accepting coordinates in the JSON body."
