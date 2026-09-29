@@ -1,0 +1,21 @@
+info:
+  name: "Get Partner Registration Status"
+  type: http
+  seq: 12
+
+http:
+  method: GET
+  url: "{{baseUrl}}/partner/registration-status"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Returns the 4-step onboarding progress, registration_step (1-5), and current status (e.g. 'onboarding' or 'pending_verification' pending admin review). Aliases: GET /partners/registration-status."

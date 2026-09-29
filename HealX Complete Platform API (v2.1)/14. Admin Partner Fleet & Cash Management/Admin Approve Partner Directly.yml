@@ -1,0 +1,34 @@
+info:
+  name: "Admin Approve Partner Directly"
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partners/{{partnerId}}/approve"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.getStatus() === 200) {
+          var json = res.getBody();
+          if (json.partner && json.partner.id) {
+            bru.setCollectionVar("partnerId", json.partner.id);
+          }
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Directly approves and activates a partner by partner UUID. Sets partners.status = 'active', registration_completed = true, marks any linked partner application as approved, and logs PARTNER_APPROVED audit log. Unlocks partner's ability to toggle online status."

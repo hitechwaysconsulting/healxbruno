@@ -65,7 +65,7 @@ request:
     - name: prescriptionId
       value: ""
     - name: applicationId
-      value: ""
+      value: ccdd479d-3e8c-44e5-92a1-1747e7f807bb
     - name: partnerId
       value: ""
     - name: ticketId

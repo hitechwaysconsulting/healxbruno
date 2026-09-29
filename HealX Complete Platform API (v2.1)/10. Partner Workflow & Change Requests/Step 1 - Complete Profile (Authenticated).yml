@@ -1,0 +1,39 @@
+info:
+  name: "Step 1 - Complete Profile (Authenticated)"
+  type: http
+  seq: 13
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/steps/step1"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "name": "Jane Partner",
+        "gender": "female",
+        "age": 28,
+        "emergency_contact": "+919876500000",
+        "bank_name": "HDFC Bank",
+        "branch_name": "Indiranagar",
+        "account_number": "987654321012",
+        "ifsc": "HDFC0001234",
+        "account_holder_name": "Jane Partner",
+        "aadhaar_key": "{{partnerId}}/aadhaar-key123.pdf",
+        "pan_key": "{{partnerId}}/pan-key123.pdf"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 1 of partner onboarding: Submits personal profile details, encrypted bank account, and uploaded Aadhaar/PAN R2 keys. Advances registration_step to 2. Aliases: POST /partner/steps/profile-completion, POST /partners/steps/step1."

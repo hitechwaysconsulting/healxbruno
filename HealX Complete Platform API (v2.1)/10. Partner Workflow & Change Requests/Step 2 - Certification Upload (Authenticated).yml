@@ -1,0 +1,29 @@
+info:
+  name: "Step 2 - Certification Upload (Authenticated)"
+  type: http
+  seq: 14
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/steps/step2"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "cert_key": "{{partnerId}}/cert-key123.pdf"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 2 of partner onboarding: Submits clinical nurse or medical certification file key. Advances registration_step to 3. Aliases: POST /partner/steps/certification-upload, POST /partners/steps/step2."

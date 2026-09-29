@@ -1,0 +1,30 @@
+info:
+  name: "Step 4 - Zone Selection & Work Type (Authenticated)"
+  type: http
+  seq: 16
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/steps/step4"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "zone_id": 1,
+        "work_type": "full_time"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 4 of partner onboarding: Selects operational zone and work type (full_time / part_time). Sets status = 'pending_verification', registration_step = 5, and registration_completed = false. Partner cannot go online until approved by admin. Aliases: POST /partner/zone-work-type, POST /partner/steps/zone-work-type, POST /partners/steps/step4."

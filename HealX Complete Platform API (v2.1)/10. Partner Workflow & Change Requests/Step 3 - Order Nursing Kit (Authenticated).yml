@@ -1,0 +1,30 @@
+info:
+  name: "Step 3 - Order Nursing Kit (Authenticated)"
+  type: http
+  seq: 15
+
+http:
+  method: POST
+  url: "{{baseUrl}}/partner/steps/step3"
+  headers:
+    - name: Authorization
+      value: Bearer {{partnerToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "kit_type": "standard_nursing_kit",
+        "notes": "Please deliver to residential address"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Step 3 of partner onboarding: Places initial order for required medical nursing kit. Advances registration_step to 4. Aliases: POST /partner/steps/order-kit, POST /partner/order-kit, POST /partners/steps/step3."
