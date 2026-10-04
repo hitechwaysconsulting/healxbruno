@@ -1,0 +1,7 @@
+info:
+  name: "27. Face Verification API (DeepFace Microservice)"
+  type: folder
+  seq: 27
+
+request:
+  auth: inherit

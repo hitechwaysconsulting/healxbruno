@@ -1,0 +1,30 @@
+info:
+  name: "2. Verify Partner Application (By Partner ID)"
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-applications/{{samplePartnerId}}/verify-face"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "selfie_file_key": "sample/partner-selfie.jpg",
+        "aadhaar_file_key": "sample/partner-aadhaar.jpg"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Verifies an applicant's face for the partner verification queue. Saves match score to partners table and records audit log."

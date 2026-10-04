@@ -1,0 +1,32 @@
+info:
+  name: "1. Direct Compare Faces (Input FileKeys)"
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-verification/compare-faces"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "selfie_file_key": "sample/partner-selfie.jpg",
+        "aadhaar_file_key": "sample/partner-aadhaar.jpg",
+        "selfie_bucket": "partner-profile-pics",
+        "aadhaar_bucket": "partner-documents"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Takes arbitrary selfie and aadhaar filekeys, runs DeepFace comparison, and returns the match score."

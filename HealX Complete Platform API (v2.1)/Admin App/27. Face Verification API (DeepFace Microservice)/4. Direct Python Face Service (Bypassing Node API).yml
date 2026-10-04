@@ -1,0 +1,32 @@
+info:
+  name: "4. Direct Python Face Service (Bypassing Node API)"
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{faceServiceUrl}}/api/v1/compare-faces"
+  headers:
+    - name: X-API-Key
+      value: "{{faceApiKey}}"
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "selfie_file_key": "sample/partner-selfie.jpg",
+        "aadhaar_file_key": "sample/partner-aadhaar.jpg",
+        "selfie_bucket": "partner-profile-pics",
+        "aadhaar_bucket": "partner-documents"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Directly invokes the FastAPI compare-faces endpoint using X-API-Key authentication."

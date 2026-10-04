@@ -1,0 +1,30 @@
+info:
+  name: "Verify Partner Application Face (DeepFace AI)"
+  type: http
+  seq: 9
+
+http:
+  method: POST
+  url: "{{baseUrl}}/admin/partner-applications/{{applicationId}}/verify-face"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminToken}}
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "selfie_file_key": "sample/partner-selfie.jpg",
+        "aadhaar_file_key": "sample/partner-aadhaar.jpg"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
+
+docs: "Verifies an applicant's face against their Aadhaar document using DeepFace AI. Updates partners.selfie_match_score, writes partner_face_verifications history record, and logs PARTNER_FACE_VERIFICATION in audit logs."

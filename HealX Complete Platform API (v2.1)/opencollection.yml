@@ -82,6 +82,16 @@ request:
       value: 22222222-2222-4222-8222-222222222222
     - name: testZoneId
       value: "1"
+    - name: faceServiceUrl
+      value: http://localhost:8100
+    - name: face_service_url
+      value: http://localhost:8100
+    - name: faceApiKey
+      value: test-secret-key
+    - name: samplePartnerId
+      value: edbc0522-59bc-4616-a71f-94398b8427c6
+    - name: sample_partner_id
+      value: edbc0522-59bc-4616-a71f-94398b8427c6
 
 docs:
   content: "Exhaustive Postman Collection covering all 130+ endpoint instances across the HealX Healthcare Platform: Auth, Customer, Partner, Admin, Catalog, Bookings, Cart, Zones, Partner Verification Queue, Document Review, Change Requests, Cash Ledger, Refunds, and System Utilities. Includes dynamic variable extraction (tokens, IDs, OTPs) and realistic payloads."
